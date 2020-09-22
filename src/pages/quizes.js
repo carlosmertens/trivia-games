@@ -1,21 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { PageHeader } from '../components/PageHeader';
+
 import '../styles/App.css';
 
-function Quizes() {
+function Quizes({ complete, getQuestion, questionNumber }) {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'>
-          Learn Quizes
-        </a>
-      </header>
+      <PageHeader>Welcome to the Trivia Challange!</PageHeader>
+
+      {!complete ? (
+        <div className='container'>{getQuestion[questionNumber]}</div>
+      ) : (
+        <Link to='/results' className='btn btn-outline-primary btn-lg'>
+          See score
+        </Link>
+      )}
+
+      <div>
+        <h2>{questionNumber} of 10</h2>
+      </div>
     </div>
   );
 }
