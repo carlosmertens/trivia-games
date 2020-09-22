@@ -5,7 +5,7 @@ import { PageLayout } from '../components/PageLayout';
 
 import '../styles/App.css';
 
-function Quizes({ complete, getQuestion, questionNumber, questions }) {
+function Quizes({ complete, getQuestion, questionNumber }) {
   return (
     <PageLayout>
       {!complete ? (

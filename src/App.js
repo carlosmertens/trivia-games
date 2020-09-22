@@ -14,6 +14,7 @@ function App() {
   const [answeredList, setAnswerList] = useState([]);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [complete, setComplete] = useState(false);
+  const [callApi, setCallApi] = useState(1);
 
   useEffect(() => {
     const apiUrl =
@@ -21,32 +22,29 @@ function App() {
     const fetchData = async () => {
       const response = await axios.get(apiUrl);
       setQuestions(response.data.results);
+      setCallApi(0);
     };
 
     fetchData();
-  }, []);
+  }, [callApi]);
 
-  const checkAnswer = (props) => {
-    if (props === questions[questionNumber].correct_answer) {
+  const checkAnswer = ({ check, key }) => {
+    if (check === questions[questionNumber].correct_answer) {
       setScore(score + 1);
       setAnswerList([
         ...answeredList,
-        <p key={questionNumber}>
-          {questions[questionNumber].question} - CORRECT
-        </p>,
+        <p key={key}>{questions[questionNumber].question} - CORRECT</p>,
       ]);
       setQuestionNumber(questionNumber + 1);
     } else {
       setAnswerList([
         ...answeredList,
-        <p>{questions[questionNumber].question} - WRONG</p>,
+        <p key={key}>{questions[questionNumber].question} - WRONG</p>,
       ]);
       setQuestionNumber(questionNumber + 1);
-      console.log('Wrong');
     }
     if (questionNumber === 9) {
       setComplete(true);
-      console.log(answeredList);
     }
   };
 
@@ -59,12 +57,12 @@ function App() {
           <h5 className='card-title'>Score: {score}/10</h5>
           <p className='card-text'>{question.question}</p>
           <button
-            onClick={() => checkAnswer('True')}
+            onClick={() => checkAnswer({ check: 'True', key: index })}
             className='btn btn-outline-primary btn-lg m-2'>
             True
           </button>
           <button
-            onClick={() => checkAnswer('False')}
+            onClick={() => checkAnswer({ check: 'False', key: index })}
             className='btn btn-outline-primary btn-lg'>
             False
           </button>
@@ -76,6 +74,15 @@ function App() {
       </div>
     </div>
   ));
+
+  const handleReset = () => {
+    setQuestions([]);
+    setScore(0);
+    setAnswerList([]);
+    setQuestionNumber(0);
+    setComplete(false);
+    setCallApi(1);
+  };
 
   return (
     <Router>
@@ -89,7 +96,6 @@ function App() {
               getQuestion={getQuestion}
               complete={complete}
               questionNumber={questionNumber}
-              questions={questions}
             />
           );
         }}
@@ -98,7 +104,13 @@ function App() {
         exact
         path='/results'
         render={() => {
-          return <Results score={score} answeredList={answeredList} />;
+          return (
+            <Results
+              score={score}
+              answeredList={answeredList}
+              handleReset={handleReset}
+            />
+          );
         }}
       />
     </Router>
