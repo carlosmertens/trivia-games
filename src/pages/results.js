@@ -1,21 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PageHeader } from '../components/PageHeader';
+import { PageLayout } from '../components/PageLayout';
 
 import '../styles/App.css';
 
 function Results(props) {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>Score: {props.score}/10</p>
-        <div className='container'>{props.answeredList}</div>
-        <div className='container'>
-          <Link to='/quizes' className='btn btn-outline-primary btn-lg'>
-            Play again!
-          </Link>
-        </div>
-      </header>
-    </div>
+    <PageLayout>
+      <PageHeader>Score: {props.score}/10</PageHeader>
+
+      <div className='container'>{props.answeredList}</div>
+      <div className='container'>
+        <Link
+          to='/quizes'
+          onClick={props.handleReset}
+          className='btn btn-outline-primary btn-lg'>
+          Play again!
+        </Link>
+      </div>
+    </PageLayout>
   );
 }
 

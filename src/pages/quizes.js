@@ -1,27 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { PageHeader } from '../components/PageHeader';
+import { PageLayout } from '../components/PageLayout';
 
 import '../styles/App.css';
 
-function Quizes({ complete, getQuestion, questionNumber }) {
+function Quizes({ complete, getQuestion, questionNumber, questions }) {
   return (
-    <div className='App'>
-      <PageHeader>Welcome to the Trivia Challange!</PageHeader>
-
+    <PageLayout>
       {!complete ? (
         <div className='container'>{getQuestion[questionNumber]}</div>
       ) : (
-        <Link to='/results' className='btn btn-outline-primary btn-lg'>
-          See score
+        <Link
+          to='/results'
+          className='btn btn-outline-primary btn-lg align-middle align-self-center mt-5'>
+          Review answers
         </Link>
       )}
-
-      <div>
-        <h2>{questionNumber} of 10</h2>
-      </div>
-    </div>
+    </PageLayout>
   );
 }
 

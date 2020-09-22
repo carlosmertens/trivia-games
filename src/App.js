@@ -6,6 +6,8 @@ import Home from './pages/home';
 import Quizes from './pages/quizes';
 import Results from './pages/results';
 
+import { PageHeader } from './components/PageHeader';
+
 function App() {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
@@ -49,25 +51,32 @@ function App() {
   };
 
   const getQuestion = questions.map((question, index) => (
-    <div key={index} className='quiz-content'>
-      <h2 className='text-xl my-4'>Category:</h2>
-      <p>{question.category}</p>
-      <h2 className='text-xl my-4'>Question {questionNumber + 1}:</h2>
-      <p>{question.question}</p>
-      <div className='m-8'>
-        <button
-          onClick={() => checkAnswer('True')}
-          className='btn btn-outline-primary btn-lg'>
-          True
-        </button>
-        <button
-          onClick={() => checkAnswer('False')}
-          className='btn btn-outline-primary btn-lg'>
-          False
-        </button>
+    <div key={index} className='mx-auto'>
+      <PageHeader>{question.category}</PageHeader>
+
+      <div className='card mx-auto' style={{ width: '20rem' }}>
+        <div className='card-body'>
+          <h5 className='card-title'>Score: {score}/10</h5>
+          <p className='card-text'>{question.question}</p>
+          <button
+            onClick={() => checkAnswer('True')}
+            className='btn btn-outline-primary btn-lg m-2'>
+            True
+          </button>
+          <button
+            onClick={() => checkAnswer('False')}
+            className='btn btn-outline-primary btn-lg'>
+            False
+          </button>
+        </div>
+      </div>
+
+      <div className='mt-5'>
+        <h2>Question {questionNumber} of 10</h2>
       </div>
     </div>
   ));
+
   return (
     <Router>
       <Route exact path='/' component={Home} />
@@ -80,6 +89,7 @@ function App() {
               getQuestion={getQuestion}
               complete={complete}
               questionNumber={questionNumber}
+              questions={questions}
             />
           );
         }}
