@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import Logo from '../img/logo.png';
 
-export const Navbar = () => {
+export const Navbar = ({ handleReset }) => {
   return (
     <nav className='navbar navbar-light bg-transparent'>
-      <Link to='/' className='navbar-brand'>
+      <Link to='/' onClick={handleReset} className='navbar-brand'>
         <img
           src={Logo}
           width='30'

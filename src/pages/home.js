@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/App.css';
-
 import { PageHeader } from '../components/PageHeader';
 import { PageLayout } from '../components/PageLayout';
 

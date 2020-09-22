@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 
+import { Navbar } from './components/Navbar';
 import Home from './pages/home';
 import Quizes from './pages/quizes';
 import Results from './pages/results';
@@ -97,6 +98,12 @@ function App() {
 
   return (
     <Router>
+      <Route
+        path='/'
+        render={() => {
+          return <Navbar handleReset={handleReset} />;
+        }}
+      />
       <Route exact path='/' component={Home} />
       <Route
         exact
