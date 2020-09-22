@@ -14,7 +14,7 @@ function Home() {
         <p>You will be presented with 10 True or False questions.</p>
         <p>Can you score 100%?</p>
       </div>
-      <Link to='/quizes' className='btn btn-outline-primary btn-lg'>
+      <Link to='/quizes' className='btn btn-outline-primary btn-lg mt-5'>
         Begin
       </Link>
     </PageLayout>

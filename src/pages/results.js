@@ -6,7 +6,6 @@ import { PageLayout } from '../components/PageLayout';
 import '../styles/App.css';
 
 function Results(props) {
-  console.log(props.answeredList);
   return (
     <PageLayout>
       <PageHeader>Score: {props.score}/10</PageHeader>

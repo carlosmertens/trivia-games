@@ -8,6 +8,11 @@ import Results from './pages/results';
 
 import { PageHeader } from './components/PageHeader';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+library.add(faCheck, faTimes);
+
 function App() {
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
@@ -33,13 +38,19 @@ function App() {
       setScore(score + 1);
       setAnswerList([
         ...answeredList,
-        <p key={key}>{questions[questionNumber].question} - CORRECT</p>,
+        <p key={key}>
+          <FontAwesomeIcon icon='check' size='lg' color='green' />{' '}
+          <span className='pl-2'>{questions[questionNumber].question}</span>
+        </p>,
       ]);
       setQuestionNumber(questionNumber + 1);
     } else {
       setAnswerList([
         ...answeredList,
-        <p key={key}>{questions[questionNumber].question} - WRONG</p>,
+        <p key={key}>
+          <FontAwesomeIcon icon='times' size='lg' color='red' />{' '}
+          <span className='pl-2'>{questions[questionNumber].question}</span>
+        </p>,
       ]);
       setQuestionNumber(questionNumber + 1);
     }
