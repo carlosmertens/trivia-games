@@ -6,10 +6,10 @@ import { PageHeader } from '../components/PageHeader';
 import { PageLayout } from '../components/PageLayout';
 
 function Results({ score, answeredList, handleReset }) {
-  const appStore = useAppStore();
+  const store = useAppStore();
   return (
     <PageLayout>
-      <PageHeader>Score: {appStore.score}/10</PageHeader>
+      <PageHeader>Score: {store.score}/10</PageHeader>
 
       <div className='container text-left'>{answeredList}</div>
       <div className='container'>

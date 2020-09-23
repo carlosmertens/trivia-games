@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAppStore } from '../context/AppContext';
 
 import { PageLayout } from '../components/PageLayout';
 
-function Quizes({ complete, getQuestion, questionNumber }) {
+function Quizes({ complete, getQuestion }) {
+  const store = useAppStore();
   return (
     <PageLayout>
       {!complete ? (
-        <div className='container'>{getQuestion[questionNumber]}</div>
+        <div className='container'>{getQuestion[store.number]}</div>
       ) : (
         <Link
           to='/results'

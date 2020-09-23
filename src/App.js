@@ -18,10 +18,10 @@ library.add(faCheck, faTimes);
 export default function App() {
   const [questions, setQuestions] = useState([]);
   const [answeredList, setAnswerList] = useState([]);
-  const [questionNumber, setQuestionNumber] = useState(0);
   const [complete, setComplete] = useState(false);
+  const [callApi, setCallApi] = useState(1);
 
-  const appStore = useAppStore();
+  const store = useAppStore();
 
   useEffect(() => {
     const apiUrl =
@@ -29,33 +29,34 @@ export default function App() {
     const fetchData = async () => {
       const response = await axios.get(apiUrl);
       setQuestions(response.data.results);
+      setCallApi(0);
     };
 
     fetchData();
-  }, [complete]);
+  }, [callApi]);
 
   const checkAnswer = ({ check, key }) => {
-    if (check === questions[questionNumber].correct_answer) {
-      appStore.addScore();
+    if (check === questions[store.number].correct_answer) {
+      store.addScore();
       setAnswerList([
         ...answeredList,
         <p key={key}>
           <FontAwesomeIcon icon='check' size='lg' color='green' />{' '}
-          <span className='pl-2'>{questions[questionNumber].question}</span>
+          <span className='pl-2'>{questions[store.number].question}</span>
         </p>,
       ]);
-      setQuestionNumber(questionNumber + 1);
+      store.addNumber();
     } else {
       setAnswerList([
         ...answeredList,
         <p key={key}>
           <FontAwesomeIcon icon='times' size='lg' color='red' />{' '}
-          <span className='pl-2'>{questions[questionNumber].question}</span>
+          <span className='pl-2'>{questions[store.number].question}</span>
         </p>,
       ]);
-      setQuestionNumber(questionNumber + 1);
+      store.addNumber();
     }
-    if (questionNumber === 9) {
+    if (store.number === 10) {
       setComplete(true);
     }
   };
@@ -66,7 +67,7 @@ export default function App() {
 
       <div className='card mx-auto' style={{ width: '20rem' }}>
         <div className='card-body'>
-          <h5 className='card-title'>Score: {appStore.score}/10</h5>
+          <h5 className='card-title'>Score: {store.score}/10</h5>
           <p className='card-text'>{question.question}</p>
           <button
             onClick={() => checkAnswer({ check: 'True', key: index })}
@@ -82,17 +83,18 @@ export default function App() {
       </div>
 
       <div className='mt-5'>
-        <h2>Question {questionNumber} of 10</h2>
+        <h2>Question {store.number} of 10</h2>
       </div>
     </div>
   ));
 
   const handleReset = () => {
     setQuestions([]);
-    appStore.clearScore();
+    store.clearScore();
     setAnswerList([]);
-    setQuestionNumber(0);
+    store.clearNumber();
     setComplete(false);
+    setCallApi(1);
   };
 
   return (
@@ -112,7 +114,7 @@ export default function App() {
             <Quizes
               getQuestion={getQuestion}
               complete={complete}
-              questionNumber={questionNumber}
+              // questionNumber={store.number}
             />
           );
         }}
