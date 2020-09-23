@@ -7,6 +7,7 @@ export function createAppStore() {
     clearScore() {
       this.score = 0;
     },
+
     number: 0,
     addNumber() {
       this.number++;

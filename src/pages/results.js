@@ -5,7 +5,7 @@ import { useAppStore } from '../context/AppContext';
 import { PageHeader } from '../components/PageHeader';
 import { PageLayout } from '../components/PageLayout';
 
-function Results({ score, answeredList, handleReset }) {
+function Results({ answeredList, handleReset }) {
   const store = useAppStore();
   return (
     <PageLayout>
@@ -14,7 +14,7 @@ function Results({ score, answeredList, handleReset }) {
       <div className='container text-left'>{answeredList}</div>
       <div className='container'>
         <Link
-          to='/quizes'
+          to='/'
           onClick={handleReset}
           className='btn btn-outline-primary btn-lg m-5'>
           Play again?

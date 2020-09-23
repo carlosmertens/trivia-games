@@ -1,21 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useAppStore } from '../context/AppContext';
 
 import { PageLayout } from '../components/PageLayout';
 
-function Quizes({ complete, getQuestion }) {
+function Quizes({ getQuestion, complete }) {
   const store = useAppStore();
   return (
     <PageLayout>
       {!complete ? (
         <div className='container'>{getQuestion[store.number]}</div>
       ) : (
-        <Link
-          to='/results'
-          className='btn btn-outline-primary btn-lg align-middle align-self-center mt-5'>
-          Review answers
-        </Link>
+        <Redirect to='/results' />
       )}
     </PageLayout>
   );

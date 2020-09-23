@@ -56,6 +56,7 @@ export default function App() {
       ]);
       store.addNumber();
     }
+
     if (store.number === 10) {
       setComplete(true);
     }
@@ -90,11 +91,11 @@ export default function App() {
 
   const handleReset = () => {
     setQuestions([]);
-    store.clearScore();
     setAnswerList([]);
-    store.clearNumber();
     setComplete(false);
     setCallApi(1);
+    store.clearScore();
+    store.clearNumber();
   };
 
   return (
@@ -110,13 +111,7 @@ export default function App() {
         exact
         path='/quizes'
         render={() => {
-          return (
-            <Quizes
-              getQuestion={getQuestion}
-              complete={complete}
-              // questionNumber={store.number}
-            />
-          );
+          return <Quizes getQuestion={getQuestion} complete={complete} />;
         }}
       />
       <Route

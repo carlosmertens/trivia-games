@@ -1,5 +1,6 @@
-import { useLocalStore } from 'mobx-react';
 import React from 'react';
+import { useLocalStore } from 'mobx-react';
+
 import { createAppStore } from '../store/appStore';
 
 const AppContext = React.createContext(null);
