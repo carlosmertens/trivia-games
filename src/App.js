@@ -30,6 +30,7 @@ export default function App() {
       const response = await axios.get(apiUrl);
       setQuestions(response.data.results);
       setCallApi(0);
+      console.log(response.data.results);
     };
 
     fetchData();
@@ -69,7 +70,7 @@ export default function App() {
       <div className='card mx-auto' style={{ width: '20rem' }}>
         <div className='card-body'>
           <h5 className='card-title'>Score: {store.score}/10</h5>
-          <p className='card-text'>{question.question}</p>
+          <p className='card-text'>{question.question.replace(/&quot;/g, '"')}</p>
           <button
             onClick={() => checkAnswer({ check: 'True', key: index })}
             className='btn btn-outline-primary btn-lg m-2'>
