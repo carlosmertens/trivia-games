@@ -1,68 +1,104 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![The G2i Logo](https://raw.githubusercontent.com/g2i/code-challenge-static-assets/master/g2i-web-150px.png 'The G2i logo')
 
-In the project directory, you can run:
+# Trivia Game Coding Challenge
 
-### `yarn start`
+#### Published with Netlify
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Trivia Game App](https://trivia-game-cm.netlify.app/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Applicant
 
-### `yarn test`
+- **Carlos Mertens** - _Mertens-Applications_
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technology
 
-### `yarn build`
+1. React js
+2. React Hooks
+3. React Router
+4. MobX
+5. Axios
+6. Bootstrap 4
+7. Font Awesome
+8. Git/GitHub
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Overview
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Your challenge is to create a 10 question, true or false, trivia app in the technology you are applying to work in. **You should not just implement the most basic solution. This is a chance to show off your abilities and impress.**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**The application code will be reviewed and scored on these key areas with many subset areas for each:**
 
-### `yarn eject`
+- Functionality
+- Code Format
+- Project Structure
+- Scalability
+- Maintainability
+- Use of industry best practices
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Some specific things that we are looking for:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Typescript if you know it
+- Use of Expo for React Native projects
+- Correct implementation of a state manager
+- Correct implementation of a navigation solution
+- Componentization
+- Communiation in the repo and/or code
+- Best practices with API calls and data
+- Separation of concerns between business and UI logic
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Goals
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Implement the screens based off the wireframes and api below using **advanced techniques** and **industry best practices** for your platform. Note that the wireframes may not be complete, so use your best judgment for UI/UX implementation. **Do not use a boilerplate like React Boilerplate or Ignite for this challenge.** We want to see how you structure your project and what tooling you use from scratch. Create react app is fine to use. React Native projects should use the Expo CLI workflow: https://facebook.github.io/react-native/docs/getting-started
 
-## Learn More
+## Specifications
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Data:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The api url is: https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean
 
-### Code Splitting
+Sample returned json:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```javascript
+{
+  "response_code": 0,
+  "results": [
+    {
+      "category": "Entertainment: Video Games",
+      "type": "boolean",
+      "difficulty": "hard",
+      "question": "Unturned originally started as a Roblox game.",
+      "correct_answer": "True",
+      "incorrect_answers": [
+        "False"
+      ]
+    },…]}
+```
 
-### Analyzing the Bundle Size
+### Intro / Home Screen:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![The Intro screen for the app](https://raw.githubusercontent.com/g2i/code-challenge-static-assets/master/Intro.png 'The intro screen for the app')
 
-### Making a Progressive Web App
+- Static Text
+- BEGIN button navigates to the Quiz screen and starts the Quiz
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Quiz Screen:
 
-### Advanced Configuration
+![The Quiz screen for the app](https://raw.githubusercontent.com/g2i/code-challenge-static-assets/master/Quiz.png 'The quiz screen for the app')
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+- The headline is from question category
+- The card element contains the current question
+- The next question should appear after the current question is answered True or False
+- After all questions have been answered, navigate to the Results Screen
 
-### Deployment
+### Results screen:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+![The Results screen for the app](https://raw.githubusercontent.com/g2i/code-challenge-static-assets/master/Score.png 'The score screen for the app')
 
-### `yarn build` fails to minify
+- The Score shows correct and total
+- Displays a list of the questions and whether the answer was correct or not
+- PLAY AGAIN starts over and navigates to the Home Screen
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+---
+
+© 2018 G2i Inc. All rights reserved. Certain information contained herein is derived from information which is protected by copyrights held by G2i Inc. This code challenge, including any parts of it, cannot be duplicated, distributed, copied, modified, used to make a derivative work or used in any way without the prior written consent of G2i Inc.
